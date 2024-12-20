@@ -11,7 +11,7 @@ services:
   bing:
     build: .
     tty: true
-    command: python3 main.py
+    # command: python3 main.py
     networks:
       - selenium-net
 networks:

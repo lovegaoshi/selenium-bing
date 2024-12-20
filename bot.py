@@ -1,5 +1,6 @@
 
 import schedule
+import time
 from bing import bot
 
 call_me=lambda:None
