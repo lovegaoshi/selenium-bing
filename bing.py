@@ -11,7 +11,7 @@ def init():
     options = Options()
     #options.add_argument(f"--profile-directory=Profile 1")
     options.add_argument(r"user-data-dir=/home/seluser/.config/google-chrome-unstable")
-    driver = webdriver.Remote(command_executor='http://localhost:4444', options=options)
+    driver = webdriver.Remote(command_executor='http://selenium:4444', options=options)
     return driver
 
 def search(driver):
