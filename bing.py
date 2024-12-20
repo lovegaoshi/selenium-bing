@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
 from search_query import search_query
+from discord import send_discord_message, alert_discord_message
 
 def init():
     options = Options()
@@ -31,11 +32,28 @@ def daily(driver):
         daily_set_element.click()
         time.sleep(random.uniform(5, 10))
 
+def alert_daily_reward(driver):
+    try:    
+        driver.get('https://rewards.bing.com/')
+        points = driver.find_element(By.XPATH, '//*[@id="dailypointToolTipDiv"]/p').text
+        msg = f'[bing] rewards bot has netted {points} points for you today <3'
+        send_discord_message(msg)
+        points = driver.find_element(By.XPATH, '//*[@id="balanceToolTipDiv"]/p').text
+        msg = f'[bing] now you have {points} points total.'
+        send_discord_message(msg)
+        
+    except:
+        alert_discord_message('[bing] rewards bot failed! HELP!')
+
 def bot():
-    driver = init()
-    search(driver)
-    daily(driver)
-    driver.close()
+    try:
+        driver = init()
+        search(driver)
+        daily(driver)
+        alert_daily_reward(driver)
+        driver.close()
+    except:
+        alert_discord_message('[bing] rewards bot failed! HELP!')
 
 if __name__ == "__main__":
     bot()
