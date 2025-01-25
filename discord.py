@@ -33,7 +33,7 @@ def send_discord_message(msg: str = 'we are live!', channel_id: str = os.environ
         print(f'Failed to send message, returned status code: {r.status_code}')
 
 
-def alert_discord_message(msg: str, channel_id: str = '<your channel id>'):
+def alert_discord_message(msg: str, channel_id: str = os.environ['CHANNEL']):
     send_discord_message(f'<@{os.environ['ME']}> {msg}', channel_id)
 
 if __name__ == '__main__':

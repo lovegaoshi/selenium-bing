@@ -1,7 +1,7 @@
 
 import schedule
 import time
-from bing import bot
+from bing import adv_bot as bot
 
 call_me=lambda:None
 schedule.every().day.do(bot)
